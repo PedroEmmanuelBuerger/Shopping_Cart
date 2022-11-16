@@ -11,22 +11,32 @@ loadingText.setAttribute('class', 'loading');
 loadingText.innerText = 'Carregando...'
 localSection.appendChild(loadingText)
 // 
-const lista = await fetchProductsList('computador')
-try{
+const createUI = (par) => {
     loadingText.remove(localSection)
-    const ids = lista.map(Element => Element.id)
-    const titles = lista.map(Element => Element.title)
-    const imgs = lista.map(Element => Element.thumbnail)
-    const prices = lista.map(Element => Element.price)
-    
-    for (let i = 0; i <lista.length; i += 1 ) {
+    const ids = par.map(Element => Element.id)
+    const titles = par.map(Element => Element.title)
+    const imgs = par.map(Element => Element.thumbnail)
+    const prices = par.map(Element => Element.price)
+
+    for (let i = 0; i < par.length; i += 1) {
         const obj = {
             id: ids[i],
             title: titles[i],
             thumbnail: imgs[i],
             price: prices[i]
-            }
-    localSection.appendChild(createProductElement(obj)) 
+        }
+        localSection.appendChild(createProductElement(obj))
     }
 }
-catch(erro) {console.log('Algum erro ocorreu, recarregue a página e tente novamente')}
+try {
+    const lista = await fetchProductsList('computador')
+    createUI(lista)
+}
+catch (erro) {
+    console.log('Algum erro ocorreu, recarregue a página e tente novamente')
+    const pai = document.querySelector('.products')
+    const errorMessege = document.createElement('h1')
+    errorMessege.setAttribute('class', 'error')
+    errorMessege.innerText = 'Algum erro ocorreu, recarregue a página e tente novamente'
+    pai.appendChild(errorMessege)
+}
