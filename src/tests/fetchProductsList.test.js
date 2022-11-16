@@ -19,7 +19,9 @@ describe('Teste a função fetchProductsList', () => {
     const result = await array.results
     expect(await fetchProductsList('computador')).toEqual(result)
   });
-
-  // it('...', () => {
-  // });
+  it('verifica se ao passar nenhum parametro ou passar um parametro vazio, retorna um erro', async () => {
+    const errorMessege = 'Termo de busca não informado';
+    await expect(fetchProductsList('')).rejects.toThrow(errorMessege);
+    await expect(fetchProductsList()).rejects.toThrow(errorMessege);
+  });
 });
