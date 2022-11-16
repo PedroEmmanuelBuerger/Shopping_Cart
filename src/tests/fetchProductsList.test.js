@@ -24,4 +24,8 @@ describe('Teste a função fetchProductsList', () => {
     await expect(fetchProductsList('')).rejects.toThrow(errorMessege);
     await expect(fetchProductsList()).rejects.toThrow(errorMessege);
   });
+  it('verifica se ao receber computador como parametro retorna o objeto correto', async () => {
+  const computadores = computadorSearch
+  expect(await fetchProductsList('computador')).toEqual(computadores)
+  })
 });
