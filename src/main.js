@@ -38,3 +38,4 @@ try {
   errorMessege.innerText = 'Algum erro ocorreu, recarregue a página e tente novamente';
   pai.appendChild(errorMessege);
 }
+
