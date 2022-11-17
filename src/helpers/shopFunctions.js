@@ -59,7 +59,9 @@ const removeCartProduct = (li, id) => {
  * @param {string} product.pictures - Imagens do produto.
  * @returns {Element} Elemento de um product do carrinho.
  */
-export const createCartProductElement = ({ id, title, price, pictures }) => {
+export const createCartProductElement = ({
+  id, title, price, pictures,
+}) => {
   const li = document.createElement('li');
   li.className = 'cart__product';
   const imgContainer = createCustomElement('div', 'cart__product__image-container');
@@ -100,7 +102,9 @@ export const createCartProductElement = ({ id, title, price, pictures }) => {
  * @param {number} product.price - Preço do produto.
  * @returns {Element} Elemento de produto.
  */
-export const createProductElement = ({ id, title, thumbnail, price }) => {
+export const createProductElement = ({
+  id, title, thumbnail, price,
+}) => {
   const section = document.createElement('section');
   section.className = 'product';
 

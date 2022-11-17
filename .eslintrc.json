@@ -1,21 +1,15 @@
 {
-  "extends": "trybe-frontend",
-  "rules": {
-    "no-alert": "off",
-    "no-console": "off",
-    "prefer-arrow-callback": "off",
-    "func-names": "off",
-    "no-unused-vars": "warn"
-  },
-  "overrides": [
-    {
-      "files": ["script.js"],
-      "rules": {
-        "no-undef": "off"
-      }
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": "airbnb-base",
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
     }
-  ],
-  "env": {
-    "browser": true
-  }
 }
