@@ -40,7 +40,16 @@
     "babel-jest": "^29.2.1",
     "cypress": "10.6.0",
     "cypress-multi-reporters": "1.6.1",
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-trybe-frontend": "1.3.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-func": "^0.1.18",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-redux": "^4.0.0",
+    "eslint-plugin-sonarjs": "^0.16.0",
     "jest": "28.1.3",
     "mocha": "10.0.0",
     "mochawesome": "7.1.3",
@@ -50,6 +59,7 @@
     "stylelint-config-standard": "28.0.0"
   },
   "dependencies": {
+    "typescript": "^4.9.3",
     "vite": "^3.1.8"
   }
 }
