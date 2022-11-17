@@ -1,10 +1,12 @@
 import { searchCep } from './helpers/cepFunctions';
 import { fetchProductsList, fetchProduct } from './helpers/fetchFunctions';
-import { createProductElement } from './helpers/shopFunctions';
+import { createProductElement, createCartProductElement } from './helpers/shopFunctions';
+import { saveCartID } from './helpers/cartFunctions';
 import './style.css';
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 
+const localProductCart = document.querySelector('.cart__products');
 const localSection = document.querySelector('.products');
 const loadingText = document.createElement('h1');
 loadingText.setAttribute('class', 'loading');
@@ -37,4 +39,17 @@ try {
   errorMessege.setAttribute('class', 'error');
   errorMessege.innerText = 'Algum erro ocorreu, recarregue a página e tente novamente';
   pai.appendChild(errorMessege);
+}
+const cartAdd = async (produto) => {
+  const id = produto.firstChild.innerText;
+  saveCartID(id);
+  const produtoCompleto = await fetchProduct(id);
+  const criarProdutoHtml = await createCartProductElement(produtoCompleto);
+  return localProductCart.appendChild(criarProdutoHtml);
+};
+
+const produtos = document.getElementsByClassName('product');
+for (let i = 0; i < produtos.length; i += 1) {
+  const botao = document.querySelectorAll('.product__add');
+  botao[i].addEventListener('click', () => cartAdd(produtos[i]));
 }

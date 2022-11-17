@@ -10,7 +10,7 @@ import { removeCartID } from './cartFunctions';
  * @param {string} imageSource - URL da imagem.
  * @returns {Element} Elemento de imagem do produto.
  */
-const createProductImageElement = (imageSource) => {
+export const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'product__image';
   img.src = imageSource.replace('I.jpg', 'O.jpg');
