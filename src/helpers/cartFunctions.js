@@ -19,7 +19,6 @@ export const saveCartID = async (id) => {
   if (!id) throw new Error('Você deve fornecer um ID');
   const cartProducts = getSavedCartIDs();
   const newCartProducts = [...cartProducts, id];
-  console.log(newCartProducts);
   localStorage.setItem('cartProducts', JSON.stringify(newCartProducts));
   const obj = await fetchProduct(id);
   const sum = Number(subtotal.innerText) + obj.price;

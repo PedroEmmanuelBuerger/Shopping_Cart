@@ -7,6 +7,7 @@ import './style.css';
 const localProductCart = document.querySelector('.cart__products');
 const localSection = document.querySelector('.products');
 const loadingText = document.createElement('h1');
+const c = document.querySelector('.cep-input');
 
 window.onload = async () => {
   const ids = getSavedCartIDs();
@@ -18,7 +19,7 @@ window.onload = async () => {
   }
 };
 
-document.querySelector('.cep-button').addEventListener('click', searchCep);
+document.querySelector('.cep-button').addEventListener('click', () => searchCep(c.value));
 loadingText.setAttribute('class', 'loading');
 loadingText.innerText = 'Carregando...';
 localSection.appendChild(loadingText);
