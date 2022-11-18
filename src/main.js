@@ -1,18 +1,28 @@
 import { searchCep } from './helpers/cepFunctions';
 import { fetchProductsList, fetchProduct } from './helpers/fetchFunctions';
 import { createProductElement, createCartProductElement } from './helpers/shopFunctions';
-import { saveCartID } from './helpers/cartFunctions';
+import { saveCartID, getSavedCartIDs } from './helpers/cartFunctions';
 import './style.css';
-
-document.querySelector('.cep-button').addEventListener('click', searchCep);
 
 const localProductCart = document.querySelector('.cart__products');
 const localSection = document.querySelector('.products');
 const loadingText = document.createElement('h1');
+
+window.onload = async () => {
+  const ids = getSavedCartIDs();
+  const Arraysids = ids.map((Element) => fetchProduct(Element));
+  const valores = await Promise.all(Arraysids);
+  for (let i = 0; i < valores.length; i += 1) {
+    const result = createCartProductElement(valores[i]);
+    localProductCart.appendChild(result);
+  }
+};
+
+document.querySelector('.cep-button').addEventListener('click', searchCep);
 loadingText.setAttribute('class', 'loading');
 loadingText.innerText = 'Carregando...';
 localSection.appendChild(loadingText);
-//
+
 const createUI = (par) => {
   loadingText.remove(localSection);
   const ids = par.map((Element) => Element.id);
@@ -30,6 +40,7 @@ const createUI = (par) => {
     localSection.appendChild(createProductElement(obj));
   }
 };
+
 try {
   const lista = await fetchProductsList('computador');
   createUI(lista);
